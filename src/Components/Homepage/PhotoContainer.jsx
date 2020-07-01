@@ -16,7 +16,7 @@ const PhotoContainer = (props) => {
   return (
     <Container>
       <img
-        src={`http://localhost:8000/api/image?name=${imageId}`}
+        src={`/api/image?name=${imageId}`}
         alt="Description"
       />
     </Container>
