@@ -15,7 +15,7 @@ const Header = styled.header`
       margin-left: 20px;
       padding: 20px 0 30px 0;
     }
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 601px) {
     display: flex;
     flex-direction: column;
     position: fixed;
