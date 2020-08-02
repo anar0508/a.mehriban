@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
-import Homepage from '../Homepage/Homepage';
+import Gallery from '../Galleries/Galleries';
 import "../../index.css";
 
 const Section = styled.section`
-  display: flex;
-  flex-direction: column;
   width: 100%;
   margin: 0 auto;
 
@@ -21,25 +19,25 @@ const Content = (props) => {
   return (
       <Section>
         <Route path="/" exact>
-          <Homepage page="Hello there!" />
+          <Gallery homepage={true}  />
         </Route>
         <Route path="/login" exact>
-          <Homepage page="login!" />
+          <Gallery page="login!" />
         </Route>
         <Route path="/cabinet" exact>
-          <Homepage page="cabinet!" />
+          <Gallery page="cabinet!" />
         </Route>
         <Route path="/photo/:id" exact>
-          <Homepage page="/photo/:id" />
+          <Gallery page="/photo/:id" />
         </Route>
-        <Route path="/galery/:type" exact>
-          <Homepage page="set!" />
+        <Route path="/gallery/:type" exact>
+          <Gallery homepage={false}  />
         </Route>
         <Route path="/about" exact>
-          <Homepage page="about!" />
+          <Gallery page="about!" />
         </Route>
         <Route path="/contact" exact>
-          <Homepage page="contact!" />
+          <Gallery page="contact!" />
         </Route>
       </Section>
   );
