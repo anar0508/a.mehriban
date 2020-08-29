@@ -15,7 +15,7 @@ const Menu = (props) => {
           setExpanded(!addExpanded);
         }}
       >
-        Galery {addExpanded ? "-" : "+"} 
+        Gallery {addExpanded ? "-" : "+"}
         {expandedGallery(addExpanded)}
       </li>
       <li>
@@ -34,13 +34,34 @@ function expandedGallery(addExpanded) {
     addExpanded && (
       <ul>
         <li>
-          <Link to="/galery/breakfest"> Breakfest </Link>{" "}
+          <Link
+            to={{
+              pathname: "/gallery/breakfast",
+              gallery: "breakfast",
+            }}
+          >
+            Breakfast
+          </Link>
         </li>
         <li>
-          <Link to="/galery/dinner"> Main course </Link>{" "}
+          <Link
+            to={{
+              pathname: "/gallery/dinner",
+              gallery: "dinner",
+            }}
+          >
+            Main course
+          </Link>
         </li>
         <li>
-          <Link to="/galery/dessert"> Dessert </Link>{" "}
+          <Link
+            to={{
+              pathname: "/gallery/desert",
+              gallery: "desert",
+            }}
+          >
+            Dessert
+          </Link>
         </li>
       </ul>
     )

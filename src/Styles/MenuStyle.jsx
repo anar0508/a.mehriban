@@ -6,12 +6,15 @@ export const MenuItems = styled.ul`
   text-align: center;
   padding-bottom: 10px;
   li {
+    width: max-content;
     padding-bottom: 10px;
     font-size: 18px;
     letter-spacing: 0em;
+    cursor: pointer;
     fill: #707070;
     color: #707070;
-    &:hover {
+     &:hover {
+      transition-duration: 0.25s;
       color: #07287f;
       fill: #07287f;
       text-decoration: line;

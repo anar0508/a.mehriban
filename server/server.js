@@ -1,11 +1,11 @@
-const path = require("path");
 const express = require("express");
-const fs = require("fs");
 const mysql = require("mysql");
-const bcrypt = require("bcrypt");
-var cors = require("cors");
+const path = require("path");
+const cors = require("cors");
 const util = require("util");
-const ImgQueries = require('./imgQueries.js');
+const ImgQueries = require('./ImgQueries');
+const multer = require("multer");
+
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -17,28 +17,21 @@ const connection = mysql.createPool(
 );
 const sizeOf = util.promisify(require('image-size'));
 const query = util.promisify(connection.query).bind(connection);
+const upload = multer({ dest: './server/images' });
 
-
-app.get('/api/images', (req, res) => {
+app.get('/api/image', (req, res) => {
   ImgQueries.getImages(query, connection, req, res);
 });
 
-app.post('/api/image', (req, res) => {
-  ImgQueries.getImages(query, connection, req, res, sizeOf);
+app.get('/api/image/:id', (req, res) => {
+  ImgQueries.getImage(query, connection, req, res);
 });
 
-app.get("/api/image/:id", (req, res) => {
-  const name = req.query.name;
-  try {
-    let fileName = "images/" + name;
-    res.sendFile(path.join(__dirname, fileName));
-  } catch (error) {
-    console.log("err");
-    res.status(400).send(error);
-  }
-});
-
-app.get('/*', function (_req, res) {
+app.post('/api/image', upload.single('photo'), (req, res) => {
+    ImgQueries.loadImage(query, connection, req, res, sizeOf);
+  });
+  
+  app.get('/*', function (_req, res) {
     res.sendFile(path.resolve('build/index.html'));
 });
 
@@ -47,4 +40,5 @@ if (port == null || port === "") {
   port = 8000;
 }
 app.listen(port, function () {
+  console.log(`Example app listening on port ${port}!`);
 });

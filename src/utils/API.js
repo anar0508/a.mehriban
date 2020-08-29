@@ -1,5 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  responseType: "json"
+  headers: {
+    "Content-type": "application/json"
+  }
 });
