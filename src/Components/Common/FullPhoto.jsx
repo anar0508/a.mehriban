@@ -8,7 +8,7 @@ const Slider = styled.section`
 display: flex;
 width: 100%;
 height: 100vh;
-background-image: ${({ id }) => `url(http://localhost:8000/api/image/${id}?photoVersion=watermark)` }; 
+background-image: ${({ id }) => `url(/api/image/${id}?photoVersion=watermark)` }; 
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-position: center;

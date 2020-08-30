@@ -74,7 +74,7 @@ const PhotoContainer = (props) => {
         <img
           ref={targetRef}
           alt="Description"
-          src={`http://localhost:8000/api/image/${id}?photoVersion=resized`}
+          src={`/api/image/${id}?photoVersion=resized`}
           onLoad={() => {
             updateSize();
             updateLoaded(loaded + 1);
