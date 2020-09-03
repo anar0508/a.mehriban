@@ -34,33 +34,18 @@ function expandedGallery(addExpanded) {
     addExpanded && (
       <ul>
         <li>
-          <Link
-            to={{
-              pathname: "/gallery/breakfast",
-              gallery: "breakfast",
-            }}
-          >
+          <Link to={ "/gallery/breakfast"} >
             Breakfast
           </Link>
         </li>
         <li>
-          <Link
-            to={{
-              pathname: "/gallery/dinner",
-              gallery: "dinner",
-            }}
-          >
+          <Link to={"/gallery/dinner"}>
             Main course
           </Link>
         </li>
         <li>
-          <Link
-            to={{
-              pathname: "/gallery/desert",
-              gallery: "desert",
-            }}
-          >
-            Dessert
+          <Link to={"/gallery/desert"}>
+            Desert
           </Link>
         </li>
       </ul>

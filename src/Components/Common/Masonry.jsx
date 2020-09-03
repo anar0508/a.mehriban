@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { store } from "../../Store/store";
 import styled from "styled-components";
 import { trackWindowScroll } from "react-lazy-load-image-component";
 import PhotoContainer from "../Galleries/PhotoContainer";
@@ -25,6 +26,9 @@ const Masonry = (props) => {
   const [gridRows, changeRows] = useState(0);
   const [loaded, updatedLoaded] = useState(0);
 
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -32,6 +36,10 @@ const Masonry = (props) => {
           homepage ? `/api/image?homepage=1` : `/api/image?gallery=${gallery}`
         );
         getPhotos(result.data);
+        dispatch({
+          type: "GET_PHOTOS",
+          payload: result.data
+        });
       } catch (error) {
         console.log("====================================");
         console.log(error);
@@ -39,7 +47,8 @@ const Masonry = (props) => {
       }
     };
     getData();
-  }, [gallery, homepage]);
+  }, [dispatch, gallery, homepage]);
+
   if (loaded > images.length) {
     updatedLoaded(0);
   }
