@@ -2,6 +2,7 @@ import HamburgerButton from "../Common/HamburgerButton";
 import React from "react";
 import Logo from "../../images/letter-m.svg";
 import Menu from "../Common/Menu";
+import SocialLinks from "./SocialLinks.jsx";
 import styled from "styled-components";
 import "../../index.css";
 
@@ -15,7 +16,7 @@ const Header = styled.header`
       margin-left: 20px;
       padding: 20px 0 30px 0;
     }
-  @media screen and (min-width: 601px) {
+  @media screen and (min-width: 600px) {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -42,6 +43,7 @@ const HeaderBar = (props) => {
         {mobileChecker(screen, isExpanded, setExpanded)}
       </nav>
       {(isExpanded || screen > 600) && <Menu />}
+      {(isExpanded || screen > 600) && <SocialLinks/>}
     </Header>
   );
 };

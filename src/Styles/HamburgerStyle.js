@@ -21,7 +21,7 @@ export const Hamburger = styled.button`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: darkblue;
+    background: #68b0ab;
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;

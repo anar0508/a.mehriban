@@ -19,10 +19,7 @@ const Menu = (props) => {
         {expandedGallery(addExpanded)}
       </li>
       <li>
-        <Link to="/about">About me</Link>
-      </li>
-      <li>
-        <Link to="/contact">Contacts</Link>
+        <Link to="/about">Contact & About me </Link>
       </li>
     </MenuItems>
   );

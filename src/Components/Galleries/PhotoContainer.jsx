@@ -7,29 +7,28 @@ import "../../index.css";
 const Container = styled.div`
   grid-row-end: ${(props) => "span " + props.rowSpan};
   position: relative;
+  margin-bottom: 10px;
   img {
     width: 100%;
     z-index: 1;
-
   }
   svg {
     display: none;
   }
   &:hover img {
-      opacity: 0.6;
-      transition-duration: 0.5s;
+    opacity: 0.6;
+    transition-duration: 0.5s;
     }
-    &:hover svg{
-      transition-duration: 0.5s;
-      display: block;
-      position: absolute;
-      left: 45%;
-      top: 46%;
-      min-width: 200px;
-      color: #000000;
-      z-index: 1;
+  &:hover svg{
+    transition-duration: 0.5s;
+    display: block;
+    position: absolute;
+    left: 45%;
+    top: 46%;
+    min-width: 200px;
+    color: #000000;
+    z-index: 1;
     }
-  }
 `;
 
 const PhotoContainer = (props) => {
@@ -69,7 +68,7 @@ const PhotoContainer = (props) => {
   rowSpan = Math.ceil((height + gridGap) / (gridRows + gridGap));
 
   return (
-    <Container rowSpan={rowSpan} >
+    <Container rowSpan={rowSpan}>
       <Link to={`/photo/${id}`} onClick={handleClick}>
         <img
           ref={targetRef}

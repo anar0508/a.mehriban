@@ -10,7 +10,7 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: ${({ isHomepage }) => {
     return isHomepage
-      ? "repeat(auto-fill, minmax(250px, 1fr))"
+      ? "repeat(auto-fill, minmax(300px, 1fr))"
       : "repeat(auto-fill, minmax(220px, 1fr))";
   }};
   grid-gap: ${({ gridGap }) => gridGap + "px"};

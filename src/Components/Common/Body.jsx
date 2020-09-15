@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
 import Gallery from '../Galleries/Galleries';
+import AboutMe from '../AboutMe/AboutMe'
 import "../../index.css";
 
 const Section = styled.section`
@@ -32,10 +33,7 @@ const Content = (props) => {
           <Gallery homepage={false} />
         </Route>
         <Route path="/about" exact>
-          <Gallery page="about!" />
-        </Route>
-        <Route path="/contact" exact>
-          <Gallery page="contact!" />
+          <AboutMe />
         </Route>
       </Section>
   );

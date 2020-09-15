@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route } from "react-router-dom";
 import { store } from "./Store/store";
-import FullPhoto from "./Components/Common/FullPhoto";
+import FullPhoto from "./Components/FullPhotoPage/FullPhoto";
 import "./index.css";
 import Content from "./Components/Common/Body";
 import HeaderBar from "./Components/Common/HeaderBar";
@@ -23,7 +23,6 @@ const App = () => {
   const [screen, setScreenWidth] = useState(window.innerWidth);
   const [isExpanded, setExpanded] = useState(false);
   const globalState = useContext(store);
-  const { dispatch } = globalState;
   const isFull = globalState.state.isFull;
 
   const updateWidth = () => {

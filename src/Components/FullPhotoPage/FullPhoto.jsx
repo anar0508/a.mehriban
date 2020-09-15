@@ -7,7 +7,6 @@ import close from "../../images/close-button.svg";
 import left from "../../images/left-arrow.svg";
 import right from "../../images/right-arrow.svg";
 import pause from "../../images/pause.svg";
-import API from "../../utils/API";
 import "../../index.css";
 
 const Slider = styled.section`
@@ -25,7 +24,14 @@ const Slider = styled.section`
 
   .visible {
     opacity: 1;
-    transition: opacity 1.5s ease-in-out;
+    transition: opacity 1.3s ease-in-out;
+  }
+  img:hover {
+    transform: scale(1.4);
+    opacity:1;
+  }
+  img:active{
+    transform: scale(1.7);
   }
 `;
 
@@ -49,7 +55,7 @@ const UpperComponent = styled.div`
     span {
       display: inline-block;
       padding-left: 5px;
-      color: grey;
+      color: #c8d5b9;
     }
   }
 `;
@@ -71,6 +77,7 @@ const LowerComponent = styled.div`
 
 const FullPhoto = (props) => {
   const [isVisible, toggleVisibility] = useState(true);
+  const [isMouseMoveDisabled, toggleMouseMove] = useState(false);
   const globalState = useContext(store);
   const { dispatch } = globalState;
   const { gallery, id } = globalState.state.previousPage;
@@ -83,23 +90,25 @@ const FullPhoto = (props) => {
 
   const handleVisibility = () => {
     toggleVisibility(true);
+    toggleMouseMove(true);
     setTimeout(() => {
+      toggleMouseMove(false);
       toggleVisibility(false);
     }, 5000);
   };
- 
 
-if (isSlidesActive){
-  setTimeout(()=>{
-    dispatch({
-      type: "NEXT_FULL_PHOTO",
-      payload: { gallery: gallery, id: nextId },
-    });
-    history.push(`/photo/${nextId}`)
-  }, 3500)
-}
+  if (isSlidesActive) {
+    setTimeout(() => {
+      dispatch({
+        type: "NEXT_FULL_PHOTO",
+        payload: { gallery: gallery, id: nextId },
+      });
+      history.push(`/photo/${nextId}`);
+    }, 3500);
+  }
 
-  return ( <Slider id={id} onMouseMove={handleVisibility}>
+  return (
+    <Slider id={id}  onMouseMove={()=>{ if (isMouseMoveDisabled===false) {handleVisibility()}} }>
       <UpperComponent className={isVisible ? "visible" : ""}>
         <div>
           {isSlidesActive ? (
@@ -116,12 +125,12 @@ if (isSlidesActive){
             </Link>
           ) : (
             <Link
-            to={`/photo/${nextId}`}
-              onClick={(e) => {   
-                  dispatch({
-                    type: "START_SLIDES",
-                    payload: { gallery: gallery, id: nextId },
-                  });
+              to={`/photo/${nextId}`}
+              onClick={(e) => {
+                dispatch({
+                  type: "START_SLIDES",
+                  payload: { gallery: gallery, id: nextId },
+                });
               }}
             >
               <img src={play} alt="" />
