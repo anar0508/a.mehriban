@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import ContactForm from "./ContactForm";
 import "../../index.css";
 
 const Contact = styled.article`
@@ -30,12 +31,30 @@ const Contact = styled.article`
         width: 47%;
         height: 40px;
         padding: 20px 5px;
+        &:focus {
+          outline-color: rgb(104, 176, 171);
+        }
       }
     }
     textarea {
       width: 100%;
       padding: 10px;
       border: 2px solid rgb(200, 213, 185);
+      resize: none;
+      &:focus {
+        outline-color: rgb(104, 176, 171);
+      }
+    }
+    input[type="submit"] {
+      text-align: center;
+      width: 20%;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: rgb(200, 213, 185);
+      color: white;
+      &:active {
+        outline-color: rgb(104, 176, 171);
+      }
     }
   }
   @media screen and (min-width: 600px) {
@@ -49,7 +68,9 @@ const Contact = styled.article`
     }
     h2 {
       width: 55%;
+      margin: 0;
       text-align: left;
+      align-self: baseline;
       color: #68b0ab;
     }
     p {
@@ -68,31 +89,33 @@ const Contact = styled.article`
 
   @media screen and (min-width: 750px) {
     p {
-      width: 60%;
+      width: 80%;
     }
   }
 `;
 
 const ContactMe = (props) => {
+  const [displayResponse, toggleDisplay] = useState([false, false]);
+
   return (
     <Contact>
       <h2>Contact me</h2>
-      <form action="post" name="contact">
-        <div>
-          <input type="text" placeholder="name" />
-          <input type="email" placeholder="email" />
-        </div>
-        <textarea
-          name="message"
-          id="message"
-          cols="30"
-          rows="10"
-          placeholder="message"
-        ></textarea>
-        <input type="submit" value="Send"/>
-      </form>
+      {!displayResponse[0] ? (
+        <ContactForm toggleDisplay={toggleDisplay} />
+      ) : (
+        showMessage(displayResponse)
+      )}
     </Contact>
   );
 };
 
 export default ContactMe;
+const showMessage = (displayResponse) => {
+  return (
+    <p>
+      {displayResponse[1]
+        ? "Thank you for message. I will contact you soon"
+        : "Something went wrong. Please try again"}
+    </p>
+  );
+};

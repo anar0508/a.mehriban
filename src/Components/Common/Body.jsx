@@ -20,11 +20,8 @@ const Content = (props) => {
 
   return (
       <Section>
-        <Route path="/" exact>
+        <Route path="/"  exact>
           <Gallery homepage={true}  />
-        </Route>
-        <Route path="/login" exact>
-          <Gallery page="login!" />
         </Route>
         <Route path="/cabinet" exact>
           <Gallery page="cabinet!" />

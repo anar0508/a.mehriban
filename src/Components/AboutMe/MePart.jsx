@@ -35,16 +35,16 @@ const ProfilePart = styled.article`
   }
   @media screen and (min-width: 600px) {
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
     .imgContainer {
-      width: 35%;
+      width: 30%;
       margin-bottom: 20px;
       img {
         width: 100%;
       }
     }
     h2 {
-      width: 55%;
+      width: 50%;
       text-align: left;
       color: #68b0ab;
     }
@@ -54,11 +54,10 @@ const ProfilePart = styled.article`
       padding-left: 2%;
     }
     hr {
-      margin: 0 auto;
       height: 5px;
-      margin: 40px 0 30px;
+      margin: 40px auto 30px;
       background-color: rgb(200, 213, 185);
-      width: 80%;
+      width: 100%;
     }
   }
 

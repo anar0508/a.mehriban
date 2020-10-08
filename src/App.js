@@ -5,6 +5,7 @@ import FullPhoto from "./Components/FullPhotoPage/FullPhoto";
 import "./index.css";
 import Content from "./Components/Common/Body";
 import HeaderBar from "./Components/Common/HeaderBar";
+import LoginPage from "./Components/Admin/LoginPage";
 import styled from "styled-components";
 
 const Main = styled.main`
@@ -23,7 +24,6 @@ const App = () => {
   const [screen, setScreenWidth] = useState(window.innerWidth);
   const [isExpanded, setExpanded] = useState(false);
   const globalState = useContext(store);
-  const isFull = globalState.state.isFull;
 
   const updateWidth = () => {
     setScreenWidth(window.innerWidth);
@@ -37,19 +37,35 @@ const App = () => {
     return () => window.removeEventListener("resize", updateWidth);
   });
 
-  return isFull ? (
-    <Route path="/photo/:id" exact>
-      <FullPhoto />
-    </Route>
-  ) : (
-    <Main>
-      <HeaderBar
-        screen={screen}
-        isExpanded={isExpanded}
-        setExpanded={setExpanded}
-      />
-      <Content />
-    </Main>
+  return (
+    <>
+      <Route path="/">
+        <Main>
+          <HeaderBar
+            screen={screen}
+            isExpanded={isExpanded}
+            setExpanded={setExpanded}
+          />
+          <Content />
+        </Main>
+      </Route>
+      <Route path="/photo/:id" exact>
+        <FullPhoto />
+      </Route>
+      <Route path="/login" exact>
+        <LoginPage />
+      </Route>
+      <Route path="/admin" exact>
+        <Main>
+          <HeaderBar
+            screen={screen}
+            isExpanded={isExpanded}
+            setExpanded={setExpanded}
+          />
+          <Content />
+        </Main>
+      </Route>
+    </>
   );
 };
 

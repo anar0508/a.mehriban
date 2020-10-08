@@ -4,6 +4,8 @@ const path = require("path");
 const cors = require("cors");
 const util = require("util");
 const ImgQueries = require('./ImgQueries');
+const MessageQueries = require('./messageQueries');
+const AdminQueries = require('./adminQueries');
 const multer = require("multer");
 
 const app = express();
@@ -29,6 +31,18 @@ app.get('/api/image/:id', (req, res) => {
 
 app.post('/api/image', upload.single('photo'), (req, res) => {
     ImgQueries.loadImage(query, connection, req, res, sizeOf);
+  });
+
+  app.post('/api/message', upload.any(), (req, res) => {
+    MessageQueries.postMessage(query, connection, req, res);
+  });
+
+  app.post('/api/register', upload.any(), (req, res) => {
+    AdminQueries.register(query, connection, req, res);
+  });
+
+  app.post('/api/login', upload.any(), (req, res) => {
+    AdminQueries.login(query, connection, req, res);
   });
   
   app.get('/*', function (_req, res) {
