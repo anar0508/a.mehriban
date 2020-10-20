@@ -24,6 +24,8 @@ const App = () => {
   const [screen, setScreenWidth] = useState(window.innerWidth);
   const [isExpanded, setExpanded] = useState(false);
   const globalState = useContext(store);
+  const { dispatch } = globalState;
+  const isFull = globalState.state.isFull;
 
   const updateWidth = () => {
     setScreenWidth(window.innerWidth);
@@ -37,8 +39,11 @@ const App = () => {
     return () => window.removeEventListener("resize", updateWidth);
   });
 
-  return (
-    <>
+  return isFull ? (
+    <Route path="/photo/:id" exact>
+    <FullPhoto />
+  </Route>
+) : (<>
       <Route path="/">
         <Main>
           <HeaderBar
@@ -48,9 +53,6 @@ const App = () => {
           />
           <Content />
         </Main>
-      </Route>
-      <Route path="/photo/:id" exact>
-        <FullPhoto />
       </Route>
       <Route path="/login" exact>
         <LoginPage />
@@ -65,7 +67,7 @@ const App = () => {
           <Content />
         </Main>
       </Route>
-    </>
+      </>
   );
 };
 
